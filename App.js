@@ -4,10 +4,11 @@ import * as Font from "expo-font";
 import { StyleSheet, Text, Image, View } from "react-native";
 import { Asset } from "expo-asset";
 import { Ionicons } from "@expo/vector-icons";
-
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/es/integration/react";
+
 import configureStore from "./redux/configureStore";
+import AppContainer from "./components/AppContainer";
 
 
 const { persistor, store } = configureStore();
@@ -42,9 +43,7 @@ export default function App() {
   return isReady ? (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <View style={styles.container}>
-          <Text>Open up App.js to start working on your app!</Text>
-        </View>
+        <AppContainer />
       </PersistGate>
     </Provider>
   ) : (
@@ -55,12 +54,3 @@ export default function App() {
     />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
