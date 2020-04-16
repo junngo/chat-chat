@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import { Text, Image, View } from "react-native";
+import { StyleSheet, Text, Image, View } from "react-native";
 import { Asset } from "expo-asset";
 import { Ionicons } from "@expo/vector-icons";
 
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/es/integration/react";
+import configureStore from "./redux/configureStore";
+
+
+const { persistor, store } = configureStore();
 
 const cacheImages = images =>
   images.map(image => {
@@ -34,9 +40,13 @@ export default function App() {
   const onFinish = () => setIsReady(true);
 
   return isReady ? (
-    <View>
-      <Text>Ready!</Text>
-    </View>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <View style={styles.container}>
+          <Text>Open up App.js to start working on your app!</Text>
+        </View>
+      </PersistGate>
+    </Provider>
   ) : (
     <AppLoading
       startAsync={loadAssets}
@@ -45,3 +55,12 @@ export default function App() {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
