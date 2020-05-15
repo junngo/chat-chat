@@ -3,13 +3,8 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Auth Screen</Text>
-    </View>
-  );
-}
+import AuthScreen from "../screens/Auth";
+
 
 const Stack = createStackNavigator();
 
@@ -17,7 +12,7 @@ function AuthNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={AuthScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

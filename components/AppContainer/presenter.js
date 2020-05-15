@@ -17,9 +17,9 @@ class AppContainer extends Component {
       <>
         <StatusBar hidden={false} />
         {isLoggedIn ? (
-          <AuthNavigation />
+            <MainNavigation />
             ) : (
-          <MainNavigation />
+            <AuthNavigation />
         )}
       </>
     );
