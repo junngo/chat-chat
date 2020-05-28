@@ -5,23 +5,21 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Profile from "../screens/Profile";
 import Home from "../screens/Home";
-import ChatScreen from "../screens/Chat";
+import Chat from "../screens/Chat";
 import Feed from "../screens/Feed";
 
 
 const Tab = createBottomTabNavigator();
 
-function AuthNavigation() {
+function MainNavigation() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Profile" component={Profile} />
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Chat" component={ChatScreen} />
-        <Tab.Screen name="Feed" component={Feed} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator>
+      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Chat" component={Chat} />
+      <Tab.Screen name="Feed" component={Feed} />
+    </Tab.Navigator>
   );
 }
 
-export default AuthNavigation;
+export default MainNavigation;
