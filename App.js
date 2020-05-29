@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import { StyleSheet, Text, Image, View } from "react-native";
+import { Image } from "react-native";
 import { Asset } from "expo-asset";
 import { Ionicons } from "@expo/vector-icons";
 import { Provider } from "react-redux";
