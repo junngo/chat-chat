@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, StatusBar, StyleSheet } from "react-native";
+import { StatusBar } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigation from "../../navigation/AuthNavigation";
 import ChatNavigation from "../../navigation/ChatNavigation";

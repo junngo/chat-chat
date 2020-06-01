@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import Profile from "../screens/Profile";
 import Home from "../screens/Home";
 import Chat from "../screens/Chat";
-import Feed from "../screens/Feed";
 
 
 const Tab = createBottomTabNavigator();
 
-function MainNavigation() {
+const getHeaderName = route =>
+  route?.state?.routeNames[route.state.index] || "Home";
+
+function MainNavigation({ navigation, route }) {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: getHeaderName(route)
+    })
+  })
+
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Profile" component={Profile} />
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Chat" component={Chat} />
-      <Tab.Screen name="Feed" component={Feed} />
     </Tab.Navigator>
   );
 }

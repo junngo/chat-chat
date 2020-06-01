@@ -8,7 +8,14 @@ const Stack = createStackNavigator();
 
 function ChatNavigation() {
   return (
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerTintColor: 'white',
+          headerStyle: { backgroundColor: 'tomato' },
+          headerTitleAlign: 'center',
+          headerBackTitleVisible: false
+        }}
+      >
         <Stack.Screen name="Tab" component={MainNavigation} />
         <Stack.Screen name="Detail" component={ChatRoomScreen} />
       </Stack.Navigator>
