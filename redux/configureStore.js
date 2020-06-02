@@ -3,6 +3,7 @@ import { applyMiddleware, createStore } from "redux";
 import { persistStore, persistCombineReducers } from "redux-persist";
 import thunk from "redux-thunk";
 import user from "./modules/user";
+import chat from "./modules/chat";
 
 const middlewares = [thunk];
 
@@ -12,7 +13,8 @@ const persistConfig = {
 };
 
 const reducer = persistCombineReducers(persistConfig, {
-    user
+    user,
+    chat
 });
 
 const configureStore = () => {

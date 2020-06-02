@@ -14,6 +14,10 @@ const ChatScreen = props => {
           title="Chat Chat"
           onPress={() => navigation.navigate("Detail")}
       />
+      <Button
+        title="Create Room"
+        onPress={props.onPressChat}
+      />
     </>
   )
 };

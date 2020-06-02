@@ -71,6 +71,8 @@ function reducer(state = initialState, action) {
             return applyLogIn(state, action);
         case SET_USER:
             return applySetUser(state, action);
+        case LOG_OUT:
+            return applyLogOut(state, action);
         default:
             return state;
     }
@@ -97,9 +99,21 @@ function applySetUser(state, action) {
 }
 
 
+function applyLogOut(state, action) {
+    AsyncStorage.clear();
+
+    return {
+        ...state,
+        isLoggedIn: false,
+        token: ""
+    };
+}
+
+
 // Exports
 const actionCreators = {
-    login
+    login,
+    logOut
 };
 
 export { actionCreators };

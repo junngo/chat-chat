@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import Container from "./container";
-import {actionCreators as userActions } from "../../redux/modules/user";
+import { actionCreators as userActions } from "../../redux/modules/user";
 
-const mapDisipatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         login: (username, password) => {
             dispatch(userActions.login(username, password))
@@ -11,4 +11,4 @@ const mapDisipatchToProps = (dispatch, ownProps) => {
 };
 
 
-export default connect(null, mapDisipatchToProps)(Container);
+export default connect(null, mapDispatchToProps)(Container);

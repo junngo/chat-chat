@@ -1,4 +1,13 @@
 import { connect } from "react-redux";
 import Container from "./container";
+import { actionCreators as chatActions } from "../../redux/modules/chat";
 
-export default connect()(Container);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        createChatRoom: () => {
+            dispatch(chatActions.createChatRoom())
+        }
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Container);

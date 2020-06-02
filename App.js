@@ -40,6 +40,9 @@ export default function App() {
 
   const onFinish = () => setIsReady(true);
 
+  console.log(store.getState());
+  store.dispatch({ type: "HELLO"});
+
   return isReady ? (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
