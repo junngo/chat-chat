@@ -3,10 +3,15 @@ import { API_URL } from "../../constants";
 import { actionCreators as userActions } from "./user";
 
 // Actions
-const CREATE_ROOM = "CREATE_ROOM";
+const SET_HOME_IMAGE = "SET_HOME_IMAGE"
 
 // Action Creators
-
+function setHomeImage(home) {
+    return {
+        type: SET_HOME_IMAGE,
+        home
+    }
+}
 
 // API Actions
 function createChatRoom(params) {
@@ -30,6 +35,24 @@ function createChatRoom(params) {
     };
 }
 
+function getHome() {
+    return (dispatch, getState) => {
+        const { user: { token } } = getState();
+
+        fetch(`${API_URL}/images/home/`, {
+            headers: {
+                Authorization: `JWT ${token}`
+            }
+        }).then(response => {
+            if (response.status === 401) {
+                dispatch(userActions.logOut());
+            } else {
+                return response.json();
+            }
+        }).then(json => dispatch(setHomeImage(json)));
+    };
+}
+
 
 // Initial State
 const initialState = {}
@@ -37,6 +60,8 @@ const initialState = {}
 // Reducer
 function reducer(state = initialState, action) {
     switch (action.type) {
+        case SET_HOME_IMAGE:
+            return applySetHomeImage(state, action);
         default:
             return state;
     }
@@ -44,12 +69,20 @@ function reducer(state = initialState, action) {
 
 
 // Reducer Functions
+function applySetHomeImage(state, action) {
+    const { home } = action;
+    return {
+        ...state,
+        home
+    }
+}
 
 
 // exports
 const actionCreators = {
-    createChatRoom
-}
+    createChatRoom,
+    getHome
+};
 
 export { actionCreators };
 
