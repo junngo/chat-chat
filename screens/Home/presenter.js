@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
-import { Text, Dimensions } from "react-native";
+import { Dimensions, ActivityIndicator } from "react-native";
+import Slide from "../../components/Home/Slide";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -10,25 +11,27 @@ const Header = styled.View`
   height: ${height / 4}px;
 `;
 
-const Section = styled.View`
-  background-color: red;
-  height: 100%;
-`;
+const HomeScreen = (state, props) => {
+    const homeImage = props.home;
+    const isFetching = state.isFetching;
 
-const HomeScreen = props => {
     return (
         <Header>
-            <Swiper controlsEnabled={false} loop timeout={3}>
-                <Section>
-                    <Text>Hello1</Text>
-                </Section>
-                <Section>
-                    <Text>Hello2</Text>
-                </Section>
-                <Section>
-                    <Text>Hello3</Text>
-                </Section>
-            </Swiper>
+            {isFetching ? (
+                    <Swiper controlsEnabled={false} loop timeout={3}>
+                        {homeImage.map(home => (
+                            <Slide
+                                key={home.id}
+                                id={home.id}
+                                title={home.caption}
+                                backgroundImage={home.file}
+                            />
+                        ))}
+                    </Swiper>
+                ) : (
+                    <ActivityIndicator color="black" size="small" />
+                )
+            }
         </Header>
     )
 };
