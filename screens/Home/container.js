@@ -3,28 +3,22 @@ import HomeScreen from "./presenter";
 
 class Container extends Component {
     state = {
-      isFetching: false
+      isFetching: false,
+      homeImage: []
     };
 
   componentDidMount = () => {
     const { getHome } = this.props;
 
     getHome()
-    this.setState({
-      isFetching: true
-    })
-  };
 
-  componentDidUpdate = (prevProps) => {
     if(this.props.home) {
       this.setState({
-        isFetching: true
+        isFetching: true,
+        homeImage: this.props.home
       })
     }
   };
-
-
-
 
   render() {
     return (

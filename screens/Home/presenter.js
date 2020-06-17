@@ -12,7 +12,7 @@ const Header = styled.View`
 `;
 
 const HomeScreen = (state, props) => {
-    const homeImage = props.home;
+    const homeImage = state.homeImage;
     const isFetching = state.isFetching;
 
     return (
