@@ -14,9 +14,9 @@ const SliderContainer = styled.View`
 
 const Container = styled.View``;
 
-const HomeScreen = (state, props) => {
-    const homeImage = state.homeImage;
-    const isFetching = state.isFetching;
+const HomeScreen = props => {
+    const homeImage = props.home;
+    const loading = props.loading;
 
     return (
         <ScrollView
@@ -25,11 +25,13 @@ const HomeScreen = (state, props) => {
             }}
             contentContainerStyle={{
               flex: 1,
-              justifyContent: isFetching ? "flex-start" : "center"
+              justifyContent: loading ? "center" : "flex-start"
             }}
         >
             {
-                isFetching ? (
+                loading ? (
+                    <ActivityIndicator color="black" size="small" />
+                ) : (
                     <>
                         <SliderContainer>
                             <Swiper controlsEnabled={false} loop timeout={3}>
@@ -44,13 +46,8 @@ const HomeScreen = (state, props) => {
                             </Swiper>
                         </SliderContainer>
                         <Container>
-                            <Text style={{fontSize:90}}>ScrollView Test1</Text>
-                            <Text style={{fontSize:100}}>ScrollView Test2</Text>
-                            <Text style={{fontSize:100}}>ScrollView Test3</Text>
                         </Container>
                     </>
-                ) : (
-                    <ActivityIndicator color="black" size="small" />
                 )
             }
         </ScrollView>

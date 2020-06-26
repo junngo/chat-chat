@@ -1,30 +1,43 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import HomeScreen from "./presenter";
 
 class Container extends Component {
-    state = {
-      isFetching: false,
-      homeImage: []
-    };
+  state = {
+    loading: true
+  };
 
-  componentDidMount = () => {
-    const { getHome } = this.props;
+  static propTypes = {
+    getHome: PropTypes.func.isRequired,
+    home: PropTypes.array
+  };
 
-    getHome()
-
-    if(this.props.home) {
+  componentDidMount() {
+  const { getHome } = this.props;
+    if (!this.props.home) {
+      getHome();
+    } else {
       this.setState({
-        isFetching: true,
-        homeImage: this.props.home
-      })
+        loading: false
+      });
+    }
+  }
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.home) {
+      this.setState({
+        loading: false,
+        home: nextProps.home
+      });
     }
   };
 
   render() {
+    const { home } = this.props;
     return (
         <HomeScreen
-          {...this.props}
           {...this.state}
+          home={home}
         />
     );
   }
