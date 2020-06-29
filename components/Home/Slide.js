@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 import { Dimensions, Image } from "react-native";
 
 
-const { width: WIDTH, height: HEIGHT } = Dimensions.get("screen");
-
 const Container = styled.View`
-    width: ${WIDTH}px;
-    height: ${HEIGHT / 4}px;
+    width: 100%;
+    height: 100%;
 `;
 
 const BG = styled.Image`
     height: 100%;
     width: 100%;
     opacity: 0.8;
+    position: absolute;
+    border-radius: 5px;
 `;
 
 const Slide = ({ id, title, backgroundImage }) => (

@@ -3,16 +3,21 @@ import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
 import { Dimensions, ActivityIndicator, ScrollView, Text } from "react-native";
 import Slide from "../../components/Home/Slide";
+import ChatSquare from "../../components/ChatSquare";
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 const SliderContainer = styled.View`
-  width: ${WIDTH}px;
-  height: ${HEIGHT/4}px;
-  margin-bottom: 50px;
+    width: ${WIDTH}px;
+    height: ${HEIGHT/4}px;
+    margin-bottom: 50px;
 `;
 
-const Container = styled.View``;
+const Container = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+`;
 
 const HomeScreen = props => {
     const homeImage = props.home;
@@ -46,6 +51,9 @@ const HomeScreen = props => {
                             </Swiper>
                         </SliderContainer>
                         <Container>
+                            <ChatSquare
+                                caption="Start Chat"
+                            />
                         </Container>
                     </>
                 )
